@@ -1,19 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export interface IHomePageProps {}
+export interface ILinkPageProps {}
 
-const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
+const LinkPage: React.FunctionComponent<ILinkPageProps> = (props) => {
   return (
     <div>
-      <h1>Home</h1>
       <Link to="/second">Landing</Link>
       <br></br>
       <Link to="/third">Contact</Link>
       <br></br>
-      <Link to="/fourth">Fourth</Link>
+      <Link to="/">Home</Link>
     </div>
   );
 };
 
-export default HomePage;
+export default LinkPage;
