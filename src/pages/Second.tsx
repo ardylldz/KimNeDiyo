@@ -8,7 +8,7 @@ const SecondPage: React.FunctionComponent<ISecondPageProps> = props => {
     
     return (<div>
         <h2>Landing page</h2>
-        <Link to= "/home">Go Home</Link>
+        <Link to= "/">Go Home</Link>
         </div>
     );
 };

@@ -8,7 +8,7 @@ const ThirdPage: React.FunctionComponent<IThirdPageProps> = props => {
     
     return (<div>
         <h2>Contact page</h2>
-        <Link to= "/home">Go Home</Link>
+        <Link to= "/">Go Home</Link>
 
         </div>
     );

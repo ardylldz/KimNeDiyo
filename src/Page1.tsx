@@ -13,10 +13,11 @@ const Page1: React.FunctionComponent<IPage1Props> = props => {
     return (
     <BrowserRouter>
         <Routes>
-            <Route path="home" element={<HomePage />} />
+            
+            <Route path="/" element={<HomePage />} />
             <Route path="second" element={<SecondPage />} />
             <Route path="third" element={<ThirdPage />} />
-            </Routes> 
+        </Routes> 
    </BrowserRouter>);
 };
 
