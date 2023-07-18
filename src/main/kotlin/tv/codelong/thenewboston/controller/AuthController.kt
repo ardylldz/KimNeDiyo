@@ -1,10 +1,7 @@
 package tv.codelong.thenewboston.controller
 
 
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import tv.codelong.thenewboston.dto.ApiException
 import tv.codelong.thenewboston.dto.LoginDto
 import tv.codelong.thenewboston.dto.LoginResponseDto
@@ -20,6 +17,7 @@ import tv.codelong.thenewboston.service.UserService
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = ["http://localhost:3000"])
 class AuthController(
         private val hashService: HashService,
         private val tokenService: TokenService,
@@ -38,6 +36,7 @@ class AuthController(
         )
     }
 
+    //make user controller dto and get the user from there
     @PostMapping("/register")
     fun register(@RequestBody payload: RegisterDto): LoginResponseDto {
         if (userService.existsByName(payload.name)) {

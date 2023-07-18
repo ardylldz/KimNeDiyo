@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 export interface IHomePageProps {
 }
@@ -10,27 +11,43 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
         message: string;
     }
 
-    const [data, setData] = useState<dataType>(); // Initialize with an empty object
+    const [username, setUsername] = useState('');
+    const [data, setData] = useState<dataType>();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+
+    const fetchUsername = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/username", {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            setUsername(response.data);
+        } catch (error) {
+            console.error("Error fetching user:", error);
+        }
+    };
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/users/hello")
-            .then(response => response.json())
-            .then(res => setData(res))
-            .catch(error => console.log(error))
+        fetchUsername();
+    }, []);
 
-    }, [])
-
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login', {state: {}});
+    };
 
     return (
         <div>
             <h1>Home</h1>
+            <h2>Welcome, {username}!</h2>
             <Link to="/second">Landing</Link>
             <br></br>
-            <Link to="/third">Contact</Link>
+            <Link to={`/password-change?username=${username}`}>Change Password</Link>
             <br></br>
-            <Link to="/fourth">Fourth</Link>
-            <h1>{data?.text || "boş"}</h1>
-            <h2>{data?.message || "mesaj yok"}</h2>
+            <div>
+                <button type="submit" onClick={handleLogout}>Log Out</button>
+            </div>
         </div>
     );
 };

@@ -18,3 +18,19 @@ data class ItemDto(
         val count: Int,
         val note: String?,
 )
+
+data class UserDto(
+        val id: Long,
+        val name: String,
+        val password: String,
+)
+
+data class NameDto(
+        val name: String,
+)
+
+data class PasswordChangeDto(
+        val username: String,
+        val currentPassword: String,
+        val newPassword: String
+)
