@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 interface IRegisterDto {
     name: string;
@@ -9,6 +10,8 @@ const RegisterPage: React.FunctionComponent = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
+
 
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -34,6 +37,7 @@ const RegisterPage: React.FunctionComponent = () => {
                 if (response.ok) {
                     // Registration successful
                     console.log('Registration successful');
+                    navigate("/login")
                 } else {
                     // Handle registration error
                     throw new Error('Registration failed');
@@ -51,7 +55,8 @@ const RegisterPage: React.FunctionComponent = () => {
     };
 
     return (
-        <div>
+        <div className="login">
+            <h3 className="fw-bold text-dark fs-10">REGISTER</h3>
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -71,7 +76,7 @@ const RegisterPage: React.FunctionComponent = () => {
                     onChange={(event) => setPassword(event.target.value)}
                     required/>
                 <br></br>
-                <label htmlFor="confirm-password">Confirm Password:</label>
+                <label htmlFor="confirm-password">Confirm:   </label>
                 <input
                     type="password"
                     id="confirm-password"

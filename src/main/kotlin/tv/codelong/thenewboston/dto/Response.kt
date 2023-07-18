@@ -25,6 +25,12 @@ data class UserDto(
         val password: String,
 )
 
+data class NewsDto(
+        val id: Long,
+        val header: String,
+        val content: String?,
+)
+
 data class NameDto(
         val name: String,
 )

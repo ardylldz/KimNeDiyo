@@ -26,3 +26,9 @@ data class UpdateItemDto(
         val count: Int,
         val note: String?,
 )
+
+data class CreateNewsDto(
+
+        val header: String,
+        val content: String?,
+)

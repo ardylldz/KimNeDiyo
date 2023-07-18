@@ -47,9 +47,22 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = props => {
             });
     };
     return (
-        <div>
-            <h2>Login</h2>
             <div>
+                     <div className="card text-center">
+                     <div className="card-header">
+                     <ul className="nav nav-tabs card-header-tabs">
+                     <li className="nav-item">
+                     <a className="nav-link disabled">
+                     <h3 className="fw-bold text-dark fs-10 text-start">kimnedio</h3>
+                       </a>
+                      </li>
+                      </ul>
+                      </div>
+                      </div>
+
+
+            <div className="login">
+                <h3 className="fw-bold text-dark fs-10">LOG IN</h3>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
@@ -58,8 +71,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = props => {
                     onChange={handleUsernameChange}
                     value={username}
                     required/>
-            </div>
-            <div>
+
                 <label htmlFor="password">Password:</label>
                 <input
                     type="password"
@@ -68,9 +80,15 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = props => {
                     onChange={handlePasswordChange}
                     value={password}
                     required/>
-            </div>
-            <div>
+                 <br></br>
                 <button type="submit" onClick={handleLogin}>Login</button>
+                 <br></br>
+                <li className="nav-item">
+                              <a className="nav-link" href="/register">
+                                  Don't have an account? Register <span className="blue-text">here</span>.
+                                </a>
+                            </li>
+
             </div>
         </div>
     );

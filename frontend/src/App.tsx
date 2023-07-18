@@ -5,6 +5,8 @@ import SecondPage from "./pages/Second";
 import ThirdPage from "./pages/PasswordChange";
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
+import ProfilePage from "./pages/Profile";
+
 
 export interface IAppProps {
 }
@@ -18,16 +20,17 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
         <BrowserRouter>
             <Routes>
                 <Route path="/login" element={<LoginPage/>}/>
+                 <Route path="/register" element={<RegisterPage/>}/>
+                 <Route path="/" element={<HomePage/>}/>
                 {!token
                     ? (
-                        <Route path='*' element={<Navigate to='/login' replace/>}/>
+                        <Route path='*' element={<Navigate to='/' replace/>}/>
                     )
                     : (
                         <>
-                            <Route path="/" element={<HomePage/>}/>
+                            <Route path="/profile" element={<ProfilePage/>}/>
                             <Route path="/second" element={<SecondPage/>}/>
                             <Route path="/password-change" element={<ThirdPage/>}/>
-                            <Route path="/register" element={<RegisterPage/>}/>
                         </>
                     )}
             </Routes>
