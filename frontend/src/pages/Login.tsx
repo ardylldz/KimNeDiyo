@@ -2,7 +2,6 @@ import React, {ChangeEvent, useState} from 'react';
 import {LoginDto} from "../dtos";
 import {useNavigate} from "react-router-dom";
 
-
 export interface ILoginPageProps {
 }
 
@@ -41,7 +40,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = props => {
             .then((data) => {
                 // Store the token in local storage
                 localStorage.setItem("token", data.token);
-                navigate("/")
+                window.location.href = "/";
             })
             .catch((error) => {
                 alert(error.message);

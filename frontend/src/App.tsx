@@ -9,6 +9,8 @@ import LoginPage from "./pages/Login";
 export interface IAppProps {
 }
 
+export const AuthContext = React.createContext(null);
+
 const App: React.FunctionComponent<IAppProps> = (props) => {
     const token = localStorage.getItem("token");
 
@@ -18,10 +20,9 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
                 <Route path="/login" element={<LoginPage/>}/>
                 {!token
                     ? (
-                        <>
-                            <Route path='*' element={<Navigate to='/login' replace/>}/>
-                        </>
-                    ) : (
+                        <Route path='*' element={<Navigate to='/login' replace/>}/>
+                    )
+                    : (
                         <>
                             <Route path="/" element={<HomePage/>}/>
                             <Route path="/second" element={<SecondPage/>}/>
