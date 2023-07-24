@@ -5,30 +5,32 @@ package tv.codelong.thenewboston.dto
  * Here, [LoginDto] is a data class containing immutable class members
  */
 data class LoginDto(
-        val name: String,
-        val password: String,
+    val name: String,
+    val password: String,
 )
 
 data class RegisterDto(
-        val name: String,
-        val password: String,
+    val name: String,
+    val password: String,
 )
 
 data class CreateItemDto(
-        val name: String,
-        val count: Int,
-        val note: String?,
+    val name: String,
+    val count: Int,
+    val note: String?,
 )
 
 data class UpdateItemDto(
-        val id: Long,
-        val name: String,
-        val count: Int,
-        val note: String?,
+    val id: Long,
+    val name: String,
+    val count: Int,
+    val note: String?,
 )
 
 data class CreateNewsDto(
+    val header: String,
+    val content: String?,
+    val imgPath: String?
+) {
 
-        val header: String,
-        val content: String?,
-)
+}

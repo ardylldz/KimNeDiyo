@@ -1,4 +1,5 @@
 package tv.codelong.thenewboston.controller
+
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import tv.codelong.thenewboston.dto.*
@@ -11,22 +12,23 @@ class NewsController(
     private val newsService: NewsService
 ) {
 
-     @GetMapping
+    @GetMapping
     fun getNews(authentication: Authentication): List<NewsDto> {
         return newsService.findAll()
-     }
+    }
 
     @PostMapping
-    fun createNews(authentication: Authentication, @RequestBody payload: CreateNewsDto) {
+    fun createNews(authentication: Authentication,
+                   @ModelAttribute news: CreateNewsDto
+                   ) {
         val news = News(
-
-            header = payload.header,
-            content = payload.content
+            header = news.header,
+            content = news.content,
+            imgPath = news.imgPath
         )
 
         newsService.save(news)
     }
-
 
 
     /*@PutMapping("/{id}")

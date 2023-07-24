@@ -254,13 +254,14 @@ form.example::after {
   font-size: 16px;
 }
 
-/* Custom dropdown container */
 .custom-dropdown {
   position: fixed;
   display: block;
+  width: 100px;
+  margin-left: 530px;
+  margin-top: 6px;
 }
 
-/* Custom dropdown button */
 .custom-dropdown .dropdown-btn {
   background-color: transparent;
   border: none;
@@ -268,7 +269,7 @@ form.example::after {
   padding: 12px 16px;
   font-size: 16px;
   cursor: pointer;
-  margin-left: 550px;
+
 
 }
 
@@ -279,7 +280,8 @@ form.example::after {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .custom-dropdown:hover .dropdown-content {
@@ -291,7 +293,7 @@ form.example::after {
 .column {
   float: left;
   width: 8.33%;
-  padding: px;
+  padding: 5px;
   background-color: #ccc;
   height: 120px;
 }
