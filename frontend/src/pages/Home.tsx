@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import "/Users/mislinaakca/dev/kim-ne-diyo/frontend/src/custom-styles.css";
+import "../custom-styles.css";
 import {LoginDto, RegisterDto} from "../dtos";
 
 

@@ -21,10 +21,13 @@ class NewsController(
     fun createNews(authentication: Authentication,
                    @ModelAttribute news: CreateNewsDto
                    ) {
+
+        // TODO: save image to a folder then insert image path into db
+
         val news = News(
             header = news.header,
             content = news.content,
-            imgPath = news.imgPath
+            imgPath = ""
         )
 
         newsService.save(news)

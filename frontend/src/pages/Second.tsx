@@ -68,8 +68,7 @@ const SecondPage: React.FunctionComponent<ISecondPageProps> = (props) => {
        fetch("http://localhost:8080/api/news", {
          method: "POST",
          headers: {
-           "Authorization": `Bearer ${token}`,
-           "Content-Type": "multipart/form-data"
+           "Authorization": `Bearer ${token}`
          },
          body: formData
        })

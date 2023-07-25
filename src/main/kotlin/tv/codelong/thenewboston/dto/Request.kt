@@ -1,5 +1,7 @@
 package tv.codelong.thenewboston.dto
 
+import org.springframework.web.multipart.MultipartFile
+
 /**
  * This file contains all incoming DTOs.
  * Here, [LoginDto] is a data class containing immutable class members
@@ -30,7 +32,5 @@ data class UpdateItemDto(
 data class CreateNewsDto(
     val header: String,
     val content: String?,
-    val imgPath: String?
-) {
-
-}
+    val img: MultipartFile?
+)
