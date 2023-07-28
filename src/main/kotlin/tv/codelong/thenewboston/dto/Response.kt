@@ -29,6 +29,7 @@ data class NewsDto(
         val id: Long,
         val header: String,
         val content: String?,
+        var image: String?
 )
 
 data class NameDto(

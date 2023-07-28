@@ -1,8 +1,6 @@
 package tv.codelong.thenewboston.service
 
 import org.springframework.stereotype.Service
-import tv.codelong.thenewboston.dto.NewsDto
-import tv.codelong.thenewboston.dto.toDto
 import tv.codelong.thenewboston.model.News
 import tv.codelong.thenewboston.repository.NewsRepo
 
@@ -10,8 +8,8 @@ import tv.codelong.thenewboston.repository.NewsRepo
 class NewsService (
     private val newsRepo: NewsRepo
     ) {
-        fun findAll() : List<NewsDto> {
-            return newsRepo.findAll().map { item -> item.toDto() }
+        fun findAll() : MutableIterable<News> {
+            return newsRepo.findAll()
         }
 
 
@@ -23,4 +21,14 @@ class NewsService (
         fun delete(news: News) {
             return newsRepo.delete(news)
         }
+    fun deleteNewsById(id: Long) {
+        try {
+            newsRepo.deleteById(id)
+            println("Haber başarıyla silindi: $id")
+        } catch (e: Exception) {
+            println("Haber silinirken bir hata oluştu: $id")
+            e.printStackTrace()
+        }
     }
+
+}
