@@ -351,9 +351,11 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
               )}
             </div>
             {isSearchOpen && (
-              <div className="search-window">
-                <input type="text" placeholder="Search..." />
-                <button onClick={toggleSearch}>Close</button>
+              <div className="search-overlay">
+                <div className="search-window">
+                  <input type="text" placeholder="Search..." />
+                  <button onClick={toggleSearch}>Close</button>
+                </div>
               </div>
             )}
             <button
@@ -363,10 +365,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
                 border: "none",
               }}
             >
-              <FontAwesomeIcon
-                icon={faSearch}
-                // style={{ marginLeft: "100px" }}
-              />
+              <FontAwesomeIcon icon={faSearch} />
             </button>
           </ul>
         </div>

@@ -92,10 +92,6 @@ const SecondPage: React.FunctionComponent<ISecondPageProps> = (props) => {
       setImage(e.target.files[0]);
     }
   };
-  const [showTable, setShowTable] = useState(false);
-  const handleToggleTable = () => {
-    setShowTable(!showTable);
-  };
 
   const handlePost = async (e: FormEvent) => {
     e.preventDefault();
@@ -142,72 +138,135 @@ const SecondPage: React.FunctionComponent<ISecondPageProps> = (props) => {
       console.error("Error deleting news:", error);
     }
   };
-  const swiperRef = useRef(null);
 
+  const swiperRef = useRef(null);
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
+
+  const handleShowContent = (index: number) => {
+    setCurrentContentIndex(index);
+  };
   return (
-    <div className="news-container">
-      <h1 className="news-heading">NEWS</h1>
-      <div className="add-news" style={{ width: "50%" }}>
-        <h2 style={{ fontSize: "1.2rem" }}>Add News:</h2>
-        <input
-          type="text"
-          value={header}
-          onChange={handleHeader}
-          placeholder="Header"
-        />
-        <textarea
-          value={content}
-          onChange={handleContent}
-          placeholder="Content"
-        />
-        <input type="file" onChange={handleImage} />
-        <button
-          onClick={handlePost}
-          style={{ fontSize: "1rem", padding: "5px 10px" }}
-        >
-          Submit
-        </button>
-      </div>
-      <div style={{ overflowX: "auto" }}>
+    <div className="page-container">
+      <div className="news-container">
+        <h1 className="news-heading">NEWS</h1>
+        <div className="add-news" style={{ width: "30%" }}>
+          <h2 style={{ fontSize: "1.2rem" }}>Add News:</h2>
+          <input
+            type="text"
+            value={header}
+            onChange={handleHeader}
+            placeholder="Header"
+          />
+          <textarea
+            value={content}
+            onChange={handleContent}
+            placeholder="Content"
+          />
+          <input type="file" onChange={handleImage} />
+          <button
+            onClick={handlePost}
+            style={{ fontSize: "1rem", padding: "5px 10px" }}
+          >
+            Submit
+          </button>
+        </div>
         <div
-          className="swiper-container"
-          ref={swiperRef} // Assign the ref to the swiper container
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center", // Center align the card vertically
+            minHeight: "100vh",
+          }}
         >
-          <div className="swiper-wrapper">
-            {news.map((item, index) => (
-              <div
-                key={item.id}
-                className={`swiper-slide homepage-slide ${
-                  index === 0 ? "swiper-slide-active" : ""
-                }`}
-                style={{ width: "530px", height: "415px" }}
-              >
-                <Card style={{ width: "18rem" }}>
-                  <img
-                    alt="News"
-                    src={
-                      item.image
-                        ? `data:image/jpeg;base64,${item.image}`
-                        : "https://picsum.photos/300/200"
-                    }
-                  />
-                  <CardBody>
-                    <CardTitle tag="h5">{item.header}</CardTitle>
-                    <CardSubtitle className="mb-2 text-muted" tag="h6">
-                      Subtitle
-                    </CardSubtitle>
-                    <CardText>{item.content}</CardText>
-                    <Button>Read More</Button>
-                    <button type="button" onClick={() => handleDelete(item.id)}>
-                      Delete
-                    </button>
-                  </CardBody>
-                </Card>
-              </div>
-            ))}
+          <div
+            className="swiper-container"
+            ref={swiperRef}
+            style={{ marginBottom: "100px" }}
+          >
+            <div className="swiper-wrapper">
+              {news.map(
+                (item, index) =>
+                  currentContentIndex === index && (
+                    <div
+                      key={item.id}
+                      className={`swiper-slide homepage-slide ${
+                        currentContentIndex === index
+                          ? "swiper-slide-active"
+                          : ""
+                      }`}
+                      style={{ width: "330px", height: "455px" }}
+                    >
+                      <Card
+                        style={{
+                          width: "23rem",
+                          height: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "right",
+                          margin: "auto", // Center align the card horizontally
+                        }}
+                      >
+                        <div style={{ flex: 1, overflow: "hidden" }}>
+                          <img
+                            alt="News"
+                            src={
+                              item.image
+                                ? `data:image/jpeg;base64,${item.image}`
+                                : "https://picsum.photos/300/200"
+                            }
+                            style={{
+                              width: "100%",
+                              height: "110%",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </div>
+                        <CardBody style={{ position: "relative" }}>
+                          <CardTitle tag="h3" style={{ fontWeight: "bold" }}>
+                            {item.header}
+                          </CardTitle>
+                          <CardText>{item.content}</CardText>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(item.id)}
+                              style={{
+                                position: "absolute",
+                                bottom: 0,
+                                left: 0,
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </CardBody>
+                        <div
+                          className="content-buttons"
+                          style={{ textAlign: "center" }}
+                        >
+                          {news.map((item, index) => (
+                            <button
+                              key={item.id}
+                              onClick={() => handleShowContent(index)}
+                            >
+                              {index + 1}
+                            </button>
+                          ))}
+                        </div>
+                      </Card>
+                    </div>
+                  )
+              )}
+            </div>
           </div>
         </div>
       </div>
+
       <Link to="/" className="go-home-link">
         Go Home
       </Link>
